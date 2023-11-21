@@ -10,9 +10,8 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-
-CMD ["streamlit", "run", "main.py"]
-
+#run on port 80
+CMD ["streamlit", "run", "app.py", "--server.port", "80"]
 
 # docker build -t NoaaProducer:latest .
 
