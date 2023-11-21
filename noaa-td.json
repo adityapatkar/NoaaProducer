@@ -1,9 +1,9 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:369507694488:task-definition/Noaa-td:5",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:369507694488:task-definition/Noaa-td:7",
   "containerDefinitions": [
       {
           "name": "NoaaProducer",
-          "image": "369507694488.dkr.ecr.us-east-1.amazonaws.com/noaa-producer",
+          "image": "369507694488.dkr.ecr.us-east-1.amazonaws.com/noaa-producer:5128b53800da88a720bc735490ef75426c7f5af0",
           "cpu": 1024,
           "portMappings": [
               {
@@ -40,7 +40,7 @@
   "taskRoleArn": "arn:aws:iam::369507694488:role/ecsTaskExecutionRole",
   "executionRoleArn": "arn:aws:iam::369507694488:role/ecsTaskExecutionRole",
   "networkMode": "awsvpc",
-  "revision": 5,
+  "revision": 7,
   "volumes": [],
   "status": "ACTIVE",
   "requiresAttributes": [
@@ -84,12 +84,12 @@
       "EC2"
   ],
   "cpu": "1024",
-  "memory": "3072",
+  "memory": "2048",
   "runtimePlatform": {
       "cpuArchitecture": "X86_64",
       "operatingSystemFamily": "LINUX"
   },
-  "registeredAt": "2023-11-21T21:13:23.105Z",
+  "registeredAt": "2023-11-21T21:35:17.262Z",
   "registeredBy": "arn:aws:iam::369507694488:user/adityapatkar",
   "tags": []
 }
