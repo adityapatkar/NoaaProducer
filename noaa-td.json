@@ -1,9 +1,9 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:369507694488:task-definition/Noaa-td:7",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:369507694488:task-definition/Noaa-td:10",
   "containerDefinitions": [
       {
           "name": "NoaaProducer",
-          "image": "369507694488.dkr.ecr.us-east-1.amazonaws.com/noaa-producer:5128b53800da88a720bc735490ef75426c7f5af0",
+          "image": "369507694488.dkr.ecr.us-east-1.amazonaws.com/noaa-producer:5358b92b47d9759c8f87bdf089bdb3723d68266d",
           "cpu": 1024,
           "portMappings": [
               {
@@ -39,8 +39,8 @@
   "family": "Noaa-td",
   "taskRoleArn": "arn:aws:iam::369507694488:role/ecsTaskExecutionRole",
   "executionRoleArn": "arn:aws:iam::369507694488:role/ecsTaskExecutionRole",
-  "networkMode": "awsvpc",
-  "revision": 7,
+  "networkMode": "host",
+  "revision": 10,
   "volumes": [],
   "status": "ACTIVE",
   "requiresAttributes": [
@@ -49,6 +49,9 @@
       },
       {
           "name": "ecs.capability.execution-role-awslogs"
+      },
+      {
+          "name": "com.amazonaws.ecs.capability.task-iam-role-network-host"
       },
       {
           "name": "com.amazonaws.ecs.capability.ecr-auth"
@@ -69,16 +72,12 @@
           "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
       },
       {
-          "name": "ecs.capability.task-eni"
-      },
-      {
           "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
       }
   ],
   "placementConstraints": [],
   "compatibilities": [
-      "EC2",
-      "FARGATE"
+      "EC2"
   ],
   "requiresCompatibilities": [
       "EC2"
@@ -89,7 +88,7 @@
       "cpuArchitecture": "X86_64",
       "operatingSystemFamily": "LINUX"
   },
-  "registeredAt": "2023-11-21T21:35:17.262Z",
+  "registeredAt": "2023-11-21T21:59:39.544Z",
   "registeredBy": "arn:aws:iam::369507694488:user/adityapatkar",
   "tags": []
 }
