@@ -114,15 +114,15 @@ class Producer:
         """
         Put the record in the kinesis stream
         """
-        logger.info(f"Putting record in kinesis stream")
+        #logger.info(f"Putting record in kinesis stream")
         response = self.kinesis_client.put_record(
             StreamName=STREAM_NAME,
             Data=json.dumps(record),
             PartitionKey=record["station"],
         )
-        logger.info(
-            f"Record put in kinesis stream with response {response['ResponseMetadata']['HTTPStatusCode']}"
-        )
+        # logger.info(
+        #     f"Record put in kinesis stream with response {response['ResponseMetadata']['HTTPStatusCode']}"
+        # )
 
     def produce(self):
         """
@@ -141,11 +141,8 @@ class Producer:
                 self.put_record(record)
             offset += limit
 
-            # stop on keybord interrupt
-            if KeyboardInterrupt:
-                break
-
             if len(data) < limit:
                 logger.info("All data produced, exiting")
                 break
+            
         logger.info("Data produced")
