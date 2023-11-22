@@ -1,5 +1,6 @@
 boto3==1.20.38
 altair==4.0
 requests==2.25.1
-streamlit==1.10.0
+streamlit==1.28.2
+matplotlib==3.8.2
 

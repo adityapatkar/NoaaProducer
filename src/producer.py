@@ -13,7 +13,6 @@ from src.constants import (
     DATA_URL,
     STATION_URL,
     AWS_REGION,
-    LOG_LEVEL,
     STREAM_NAME,
 )
 
@@ -25,7 +24,7 @@ class Producer:
     This class is responsible for producing the data
     """
 
-    def __init__(self, data_types, start_date, end_date, station_name_flag):
+    def __init__(self, data_types, start_date, end_date, station_name_flag, stations):
         logger.info("Initializing Producer")
         self.kinesis_client = boto3.client(
             "kinesis",
@@ -34,7 +33,7 @@ class Producer:
             aws_secret_access_key=os.environ["AWS_SECRET_ACCESS_KEY"],
         )
         self.station_name_flag = station_name_flag
-        self.station_cache = {}
+        self.station_cache = {v: k for k, v in stations.items()}
         self.headers = {"token": API_KEY}
         self.data_types = data_types
         self.params = {
@@ -73,7 +72,7 @@ class Producer:
         self.station_cache[station_id] = "Unknown"
         return "Unknown"
 
-    def get_data(self, limit, offset, station_name_flag):
+    def get_data(self, limit, offset, station_name_flag, stations):
         """
         Get the data from the data url
         """
@@ -101,6 +100,11 @@ class Producer:
                 if station_name_flag:
                     station_name = self.get_station(formatted_record["station"])
                     formatted_record["station_name"] = station_name
+                formatted_record["station_name"] = (
+                    stations[formatted_record["station"]]
+                    if formatted_record["station"] in stations
+                    else "Unknown"
+                )
                 clean_results.append(formatted_record)
 
             return clean_results
@@ -114,7 +118,7 @@ class Producer:
         """
         Put the record in the kinesis stream
         """
-        #logger.info(f"Putting record in kinesis stream")
+        # logger.info(f"Putting record in kinesis stream")
         response = self.kinesis_client.put_record(
             StreamName=STREAM_NAME,
             Data=json.dumps(record),
@@ -132,7 +136,9 @@ class Producer:
         limit = 1000
         offset = 1
         while True:
-            data = self.get_data(limit, offset, self.station_name_flag)
+            data = self.get_data(
+                limit, offset, self.station_name_flag, self.station_cache
+            )
             if not data:
                 logger.info("No data found, exiting")
                 break
@@ -144,5 +150,5 @@ class Producer:
             if len(data) < limit:
                 logger.info("All data produced, exiting")
                 break
-            
+
         logger.info("Data produced")
