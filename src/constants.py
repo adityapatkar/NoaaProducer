@@ -4,6 +4,7 @@
 
 import os
 
+# Constants
 API_KEY = os.environ["NOAA_TOKEN"]
 DATA_URL = os.environ["DATA_URL"]
 STATION_URL = os.environ["STATION_URL"]
