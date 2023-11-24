@@ -1,4 +1,4 @@
-# ClimaStream Producer
+# ClimaStream
 
 ClimaStream Producer is a weather data processing and visualization tool developed as a part of the MSML650 Cloud Computing course. This application is designed to fetch real-time weather data using NOAA's API, process it using AWS Kinesis, and visualize the data through an interactive Streamlit application. The application is containerized using Docker, allowing for easy deployment and scaling. The original deployment was done using AWS ECS, but the application can be deployed on any cloud platform that supports Docker. The application is designed to be used in conjunction with the consumer application, which can be a Lambda function or a separate Docker container. Lambda function code can be found under the `lambda` directory. The code is deployed using GitHub Actions, which can be found under the `.github/workflows` directory.
 
