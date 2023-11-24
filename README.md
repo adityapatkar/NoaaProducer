@@ -105,10 +105,6 @@ You may customize the workflow as needed by editing the YAML files within the `.
 
 GitHub Actions provides detailed logs for each workflow execution. You can monitor the deployment process and troubleshoot any issues that arise directly from the GitHub repository interface.
 
----
-
-Remember to replace or modify any placeholders or file paths as needed to match your project's specific configuration. The above instructions assume a familiarity with GitHub, Docker, AWS services, and GitHub Actions workflows.
-
 ## Contributions
 
 We welcome contributions to the ClimaStream project. Please feel free to submit issues and pull requests.
