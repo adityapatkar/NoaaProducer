@@ -15,7 +15,7 @@ ClimaStream is a weather data processing and visualization tool developed as a p
 Before running the ClimaStream, ensure that you have the following prerequisites installed:
 
 - Docker
-- An AWS account with configured environment variables for access. (Check the [Environment Variables](#environment-variables) section for more information.
+- An AWS account with configured environment variables for access. (Check the [Environment Variables](#environment-variables) section for more information.)
 
 ## Installation
 
