@@ -17,19 +17,27 @@ from src.constants import AWS_REGION, STATION_URL, API_KEY
 # configure logging
 logger = logging.getLogger()
 
-# Initialize DynamoDB client
-dynamodb = boto3.resource(
-    "dynamodb",
-    region_name=AWS_REGION,
-    aws_secret_access_key=os.environ["AWS_SECRET_ACCESS_KEY"],
-    aws_access_key_id=os.environ["AWS_ACCESS_KEY_ID"],
-)
+
+# Function to initialize DynamoDB client
+def init_dynamodb_client(aws_region, aws_secret_access_key, aws_access_key_id):
+    """
+    Initialize the DynamoDB client
+    """
+    return boto3.resource(
+        "dynamodb",
+        region_name=aws_region,
+        aws_secret_access_key=aws_secret_access_key,
+        aws_access_key_id=aws_access_key_id,
+    )
 
 
 def fetch_stations(table_name):
     """
     Fetch all the stations from the DynamoDB table
     """
+    dynamodb = init_dynamodb_client(
+        AWS_REGION, os.environ["AWS_SECRET_ACCESS_KEY"], os.environ["AWS_ACCESS_KEY_ID"]
+    )
     table = dynamodb.Table(table_name)
     response = table.scan(ProjectionExpression="station")
     stations = {item["station"] for item in response["Items"]}
@@ -88,6 +96,9 @@ def fetch_data_from_dynamodb(table_name, location):
     """
     logger.info(f"Fetching data for station: {location}")
 
+    dynamodb = init_dynamodb_client(
+        AWS_REGION, os.environ["AWS_SECRET_ACCESS_KEY"], os.environ["AWS_ACCESS_KEY_ID"]
+    )
     # Fetch data from the table
     table = dynamodb.Table(table_name)
     response = table.query(KeyConditionExpression=Key("station").eq(location))
