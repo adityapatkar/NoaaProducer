@@ -1,0 +1,14 @@
+{
+  "Records": [
+    {
+      "kinesis": {
+        "data": "eyJkYXRhdHlwZSI6ICJQUkNQIiwgImRhdGUiOiAiMjAyMy0wMS0wMSIsICJzdGF0aW9uIjogIlNUQVRJT04xIiwgInZhbHVlIjogMTB9"
+      }
+    },
+    {
+      "kinesis": {
+        "data": "eyJkYXRhdHlwZSI6ICJUTUlOIiwgImRhdGUiOiAiMjAyMy0wMS0wMiIsICJzdGF0aW9uIjogIlNUQVRJT04yIiwgInZhbHVlIjogLTV9"
+      }
+    }
+  ]
+}
