@@ -1,0 +1,22 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "logs:CreateLogGroup",
+      "Resource": "arn:aws:logs:us-east-1:369507694488:*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": ["kinesis:PutRecord", "kinesis:PutRecords"],
+      "Resource": "arn:aws:kinesis:us-east-1:369507694488:stream/NOAAStream"
+    },
+    {
+      "Effect": "Allow",
+      "Action": ["logs:CreateLogStream", "logs:PutLogEvents"],
+      "Resource": [
+        "arn:aws:logs:us-east-1:369507694488:log-group:/aws/lambda/NOAAProducer:*"
+      ]
+    }
+  ]
+}
