@@ -3,19 +3,37 @@
   "Statement": [
     {
       "Effect": "Allow",
+      "Action": [
+        "dynamodb:PutItem",
+        "dynamodb:UpdateItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:GetItem"
+      ],
+      "Resource": [
+        "arn:aws:dynamodb:us-east-1:369507694488:table/Precipitation",
+        "arn:aws:dynamodb:us-east-1:369507694488:table/Temperature"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "kinesis:GetRecords",
+        "kinesis:GetShardIterator",
+        "kinesis:DescribeStream",
+        "kinesis:ListStreams"
+      ],
+      "Resource": ["arn:aws:kinesis:us-east-1:369507694488:stream/NoaaStream"]
+    },
+    {
+      "Effect": "Allow",
       "Action": "logs:CreateLogGroup",
       "Resource": "arn:aws:logs:us-east-1:369507694488:*"
     },
     {
       "Effect": "Allow",
-      "Action": ["kinesis:PutRecord", "kinesis:PutRecords"],
-      "Resource": "arn:aws:kinesis:us-east-1:369507694488:stream/NOAAStream"
-    },
-    {
-      "Effect": "Allow",
       "Action": ["logs:CreateLogStream", "logs:PutLogEvents"],
       "Resource": [
-        "arn:aws:logs:us-east-1:369507694488:log-group:/aws/lambda/NOAAProducer:*"
+        "arn:aws:logs:us-east-1:369507694488:log-group:/aws/lambda/NoaaConsumer:*"
       ]
     }
   ]
